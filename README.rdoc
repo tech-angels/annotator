@@ -1,3 +1,71 @@
 = Annotator
 
-This project rocks and uses MIT-LICENSE.
+If you just want to have column descriptions in your model file, [annotate_models](https://github.com/ctran/annotate_models) should suite you well. Annotator will help you if you want to also keep your own comments about these columns.
+
+Ever wondered what the heck is that column used for?
+
+== Usage
+
+In your Gemfile:
+
+    gem 'annotator'
+
+Then in app directory:
+
+    rake annotate
+
+voila!
+
+== Usage (verbose)
+
+Let's say you have a Foo model:
+
+   class Foo < ActiveRecord::Base
+
+Make sure your working tree is clean (it's suggested tu put annotations in separate commits so you can easily review changes done by annotator before commiting and you can always easily revert them all) and run:
+
+    rake annotate
+
+Then it should become something like:
+
+    # My Foo model, it's awesome
+
+    # Attributes:
+    # * id [integer, primary, not null, limit=4] - primary key
+    # * body [text] - TODO: document me
+    # * created_at [datetime] - creation time
+    # * title [string] - TODO: document me
+
+    class Foo < ActiveRecord::Base
+
+Now you can edit these TODOs and run it again, nothing happens. But when you add new column and run it again:
+
+    # My Foo model, it's awesome
+
+    # Attributes:
+    # * id [integer, primary, not null, limit=4] - primary key
+    # * body [text] - there we store foo complicated body
+    # * created_at [datetime] - creation time
+    # * some_number [integer, limit=4] - TODO: document me
+    # * title [string]
+
+    class Foo < ActiveRecord::Base
+
+Of course similar thing happens when you remove column or change it's type.
+
+== Some actually useful information
+
+* it recognizes it's own block by "Attributes:" and then punctation list
+* if you don't want it to update anything, put "Attributes(nodoc):" instead
+* for some fields like title above you can just skip description including dash sometimes name is just obvious enough
+* multiline comments are ok
+
+== Todos
+
+* tests :)
+* it could be written a bit cleaner
+* since name does not have "model" in it, we could possibly use "rake routes" to annotate controller actions, not sure if it's worth it
+
+== Authors
+
+   Kacper Cieśla @ Tech-Angels http://www.tech-angels.com/

@@ -7,16 +7,16 @@ require "annotator/version"
 Gem::Specification.new do |s|
   s.name        = "annotator"
   s.version     = Annotator::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Annotator."
-  s.description = "TODO: Description of Annotator."
+  s.authors     = ["Tech-Angels", "Kacper Cieśla"]
+  s.email       = ["kacper.ciesla@tech-angels.com"]
+  s.homepage    = ""
+  s.summary     = "Annotate your models and keep your comments about fields."
+  s.description = ""
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", "~> 3.2.1"
+  s.add_dependency "rails", "~> 3.0"
 
   s.add_development_dependency "sqlite3"
 end

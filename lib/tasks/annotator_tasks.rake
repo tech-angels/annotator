@@ -1,4 +1,4 @@
-# desc "Explaining what the task does"
-# task :annotator do
-#   # Task goes here
-# end
+desc "Explaining what the task does"
+task :annotate => :environment do
+  Annotator.run
+end
