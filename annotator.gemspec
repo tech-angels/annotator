@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Annotator::VERSION
   s.authors     = ["Tech-Angels", "Kacper Cieśla"]
   s.email       = ["kacper.ciesla@tech-angels.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/tech-angels/annotator"
   s.summary     = "Annotate your models and keep your comments about fields."
   s.description = ""
 
