@@ -28,8 +28,6 @@ Make sure your working tree is clean (it's suggested tu put annotations in separ
 
 Then it should become something like:
 
-    # My Foo model, it's awesome
-
     # Attributes:
     # * id [integer, primary, not null, limit=4] - primary key
     # * body [text] - TODO: document me
@@ -59,10 +57,15 @@ Of course similar thing happens when you remove column or change it's type.
 * if you don't want it to update anything, put "Attributes(nodoc):" instead
 * for some fields like title above you can just skip description including dash sometimes name is just obvious enough
 * multiline comments are ok
+* generating initial descriptions it understands things like
+** belongs_to association columns
+** devise columns
+** paperclip colums
+
+Contributions are very much welcome.
 
 == Todos
 
-* tests :)
 * it could be written a bit cleaner
 * since name does not have "model" in it, we could possibly use "rake routes" to annotate controller actions, not sure if it's worth it
 
