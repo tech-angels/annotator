@@ -7,14 +7,15 @@ module Annotator
       [filename, klass]
     end.sort_by {|x| x.last.to_s}
 
-    i = 0
+
     models.each do |filename, model|
+    next unless model.ancestors.include? ActiveRecord::Base
     begin
       file = File.read(filename)
       lines = file.split("\n")
       out = ''
       ia = false # inside attributes block
-      after_block = false
+      after_block = false # we are already after comments block
       changed = false
       skip_file = false
       attrs_arr = []
@@ -60,7 +61,7 @@ module Annotator
       File.open(filename,'w') { |f| f.write(out) } if out.strip != file.strip && !skip_file
 
     rescue Exception => e
-      puts "FAILURE while trying to update model #{model}:\n  #{e.to_str}"
+      puts "FAILURE while trying to update model #{model}:\n  #{e}"
     end
     end
 
@@ -80,10 +81,7 @@ module Annotator
         end
       else
         puts "  A #{model}##{column.name} [#{attrs_str}]"
-        desc = "TODO: document me"
-        desc = "primary key" if column.name == 'id'
-        desc = "creation time" if column.name == 'created_at'
-        desc = "last update time" if column.name == 'updated_at'
+        desc = initial_description model, column
         arr << [column.name, attrs_str, desc]
       end
     end
@@ -97,6 +95,46 @@ module Annotator
       end
     end
     arr
+  end
+
+  def self.initial_description(model, column)
+    case column.name
+    when 'id' then return 'primary key'
+    when 'created_at' then return 'creation time'
+    when 'updated_at' then return 'last update time'
+    end
+
+    # TODO stop writing like it's functional lang and make class for Description ;)
+
+    # Devise column names
+    if model.respond_to? :devise_modules
+      devise_columns = {
+        :reset_password_token       => "Devise Recoverable module",
+        :reset_password_sent_at     => "Devise Recoverable module",
+        :remember_created_at        => "Devise Rememberable module",
+        :sign_in_count              => "Devise Trackable module",
+        :current_sign_in_at         => "Devise Trackable module",
+        :last_sign_in_at            => "Devise Trackable module",
+        :current_sign_in_ip         => "Devise Trackable module",
+        :last_sign_in_ip            => "Devise Trackable module",
+        :password_salt              => "Devise Encriptable module",
+        :confirmation_token         => "Devise Confirmable module",
+        :confirmed_at               => "Devise Confirmable module",
+        :confiramtion_sent_at       => "Devise Confirmable module",
+        :unconfirmed_email          => "Devise Confirmable module",
+        :failed_attempts            => "Devise Lockable module",
+        :unlock_token               => "Devise Locakble module",
+        :locked_at                  => "Devise Lockable module",
+        :authentication_token       => "Devise Token authenticable module"
+      }
+      guess = devise_columns[column.name.to_sym]
+      return guess if guess
+    end
+
+    # let's not add "document me" note for these obvious ones:
+    return '' if %w{email name title body}.include? column.name
+
+    return 'TODO: document me'
   end
 
   def self.column_attrs(c)
