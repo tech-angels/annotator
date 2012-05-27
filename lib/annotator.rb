@@ -106,6 +106,13 @@ module Annotator
 
     # TODO stop writing like it's functional lang and make class for Description ;)
 
+    # Belongs to association
+    model.reflect_on_all_associations.each do |reflect|
+      if reflect.foreign_key == column.name && reflect.macro == :belongs_to
+        return "belongs to #{reflect.klass}"
+      end
+    end
+
     # Devise column names
     if model.respond_to? :devise_modules
       devise_columns = {
@@ -129,6 +136,14 @@ module Annotator
       }
       guess = devise_columns[column.name.to_sym]
       return guess if guess
+    end
+
+    # Paperclip column names
+    if model.respond_to? :attachments_definitions
+      model.attachments_definitions.keys.each do |att|
+        cols = ["#{att}_file_name", "#{att}_content_type", "#{att}_file_size", "#{att}_updated_at"]
+        return "Paperclip for #{att}" if cols.include? column.name
+      end
     end
 
     # let's not add "document me" note for these obvious ones:

@@ -34,6 +34,14 @@ class AnnotatorTest < ActiveSupport::TestCase
     assert_equal File.read(asset_file 'user_annotated.rb' ), File.read(app_file 'user.rb' )
   end 
 
+  test "annotating paperclip columns" do
+    assert_equal File.read(asset_file 'paper_annotated.rb' ), File.read(app_file 'paper.rb' )
+  end
+
+  test "annotating belongs_to associations" do
+    assert_equal File.read(asset_file 'boo_annotated.rb' ), File.read(app_file 'boo.rb' )
+  end
+
   def asset_file(name)
     File.join(File.expand_path("../assets/",  __FILE__), name)
   end
