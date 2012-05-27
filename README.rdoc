@@ -20,13 +20,17 @@ voila!
 
 Let's say you have a Foo model:
 
-   class Foo < ActiveRecord::Base
+    # My Foo model, it's awesome
+
+    class Foo < ActiveRecord::Base
 
 Make sure your working tree is clean (it's suggested tu put annotations in separate commits so you can easily review changes done by annotator before commiting and you can always easily revert them all) and run:
 
     rake annotate
 
 Then it should become something like:
+
+    # My Foo model, it's awesome
 
     # Attributes:
     # * id [integer, primary, not null, limit=4] - primary key
