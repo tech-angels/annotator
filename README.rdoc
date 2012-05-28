@@ -62,9 +62,9 @@ Of course similar thing happens when you remove column or change it's type.
 * for some fields like title above you can just skip description including dash sometimes name is just obvious enough
 * multiline comments are ok
 * generating initial descriptions it understands things like
-** belongs_to association columns
-** devise columns
-** paperclip colums
+  * belongs_to association columns
+  * devise columns
+  * paperclip colums
 
 Contributions are very much welcome.
 
