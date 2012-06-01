@@ -109,7 +109,7 @@ module Annotator
     # Belongs to association
     model.reflect_on_all_associations.each do |reflect|
       if reflect.foreign_key == column.name && reflect.macro == :belongs_to
-        return "belongs to #{reflect.klass}"
+        return "belongs to :#{reflect.name}"
       end
     end
 

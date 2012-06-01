@@ -1,7 +1,7 @@
 # Attributes:
 # * id [integer, primary, not null] - primary key
 # * created_at [datetime, not null] - creation time
-# * foo_id [integer] - belongs to Foo
+# * foo_id [integer] - belongs to :foo
 # * updated_at [datetime, not null] - last update time
 class Boo < ActiveRecord::Base
   belongs_to :foo
