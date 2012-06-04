@@ -1,4 +1,5 @@
 require 'annotator/railtie'
+require 'annotator/initial_description'
 
 module Annotator
   def self.run
@@ -62,6 +63,7 @@ module Annotator
 
     rescue Exception => e
       puts "FAILURE while trying to update model #{model}:\n  #{e}"
+      puts e.backtrace.join("\n") if Rake.application.options.trace == true
     end
     end
 
@@ -98,66 +100,7 @@ module Annotator
   end
 
   def self.initial_description(model, column)
-    case column.name
-    when 'id' then return 'primary key'
-    when 'created_at' then return 'creation time'
-    when 'updated_at' then return 'last update time'
-    end
-
-    # TODO stop writing like it's functional lang and make class for Description ;)
-
-    # Belongs to association
-    model.reflect_on_all_associations.each do |reflection|
-      if reflection.foreign_key == column.name && reflection.macro == :belongs_to
-        return "belongs to :#{reflection.name}#{reflection.options[:polymorphic] ? ' (polymorphic)' : ''}"
-      end
-    end
-
-    # Polymorhic belongs_to type column
-    if column.name.ends_with? '_type'
-      if reflection = model.reflect_on_association(column.name.match(/(.*?)_type$/)[1].to_sym) 
-        return "belongs to :#{reflection.name} (polymorphic)" if reflection.options[:polymorphic]
-
-      end
-    end
-
-    # Devise column names
-    if model.respond_to? :devise_modules
-      devise_columns = {
-        :reset_password_token       => "Devise Recoverable module",
-        :reset_password_sent_at     => "Devise Recoverable module",
-        :remember_created_at        => "Devise Rememberable module",
-        :sign_in_count              => "Devise Trackable module",
-        :current_sign_in_at         => "Devise Trackable module",
-        :last_sign_in_at            => "Devise Trackable module",
-        :current_sign_in_ip         => "Devise Trackable module",
-        :last_sign_in_ip            => "Devise Trackable module",
-        :password_salt              => "Devise Encriptable module",
-        :confirmation_token         => "Devise Confirmable module",
-        :confirmed_at               => "Devise Confirmable module",
-        :confiramtion_sent_at       => "Devise Confirmable module",
-        :unconfirmed_email          => "Devise Confirmable module",
-        :failed_attempts            => "Devise Lockable module",
-        :unlock_token               => "Devise Locakble module",
-        :locked_at                  => "Devise Lockable module",
-        :authentication_token       => "Devise Token authenticable module"
-      }
-      guess = devise_columns[column.name.to_sym]
-      return guess if guess
-    end
-
-    # Paperclip column names
-    if model.respond_to? :attachments_definitions
-      model.attachments_definitions.keys.each do |att|
-        cols = ["#{att}_file_name", "#{att}_content_type", "#{att}_file_size", "#{att}_updated_at"]
-        return "Paperclip for #{att}" if cols.include? column.name
-      end
-    end
-
-    # let's not add "document me" note for these obvious ones:
-    return '' if %w{email name title body}.include? column.name
-
-    return 'TODO: document me'
+    InitialDescription.for model, column.name
   end
 
   def self.column_attrs(c)
