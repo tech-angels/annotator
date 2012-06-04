@@ -32,7 +32,7 @@ class AnnotatorTest < ActiveSupport::TestCase
 
   test "annotating devise columns" do
     assert_equal File.read(asset_file 'user_annotated.rb' ), File.read(app_file 'user.rb' )
-  end 
+  end
 
   test "annotating paperclip columns" do
     assert_equal File.read(asset_file 'paper_annotated.rb' ), File.read(app_file 'paper.rb' )
@@ -46,6 +46,10 @@ class AnnotatorTest < ActiveSupport::TestCase
     FileUtils.cp asset_file('foo_require_first.rb'), app_file('foo.rb')
     execute "rake annotate"
     assert_equal File.read(asset_file 'foo_require_first.rb' ), File.read(app_file 'foo.rb' )
+  end
+
+  test "annotating namespaced models" do
+    assert_equal File.read(asset_file 'moo_hoo_annotated.rb' ), File.read(app_file 'moo/hoo.rb' )
   end
 
   def asset_file(name)

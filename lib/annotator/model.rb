@@ -10,7 +10,7 @@ module Annotator
 
     # Model class
     def klass
-      @filename.split('/').last.split(/\.rb$/).first.camelize.constantize rescue nil
+      @filename.split('app/models/').last.split(/\.rb$/).first.camelize.constantize rescue nil
     end
 
     # Split file into 3 blocks: before attributes, attributes block, and after
