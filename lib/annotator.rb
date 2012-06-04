@@ -107,9 +107,17 @@ module Annotator
     # TODO stop writing like it's functional lang and make class for Description ;)
 
     # Belongs to association
-    model.reflect_on_all_associations.each do |reflect|
-      if reflect.foreign_key == column.name && reflect.macro == :belongs_to
-        return "belongs to :#{reflect.name}"
+    model.reflect_on_all_associations.each do |reflection|
+      if reflection.foreign_key == column.name && reflection.macro == :belongs_to
+        return "belongs to :#{reflection.name}#{reflection.options[:polymorphic] ? ' (polymorphic)' : ''}"
+      end
+    end
+
+    # Polymorhic belongs_to type column
+    if column.name.ends_with? '_type'
+      if reflection = model.reflect_on_association(column.name.match(/(.*?)_type$/)[1].to_sym) 
+        return "belongs to :#{reflection.name} (polymorphic)" if reflection.options[:polymorphic]
+
       end
     end
 

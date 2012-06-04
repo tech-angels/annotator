@@ -38,7 +38,7 @@ class AnnotatorTest < ActiveSupport::TestCase
     assert_equal File.read(asset_file 'paper_annotated.rb' ), File.read(app_file 'paper.rb' )
   end
 
-  test "annotating belongs_to associations" do
+  test "annotating belongs_to and polymorphic associations" do
     assert_equal File.read(asset_file 'boo_annotated.rb' ), File.read(app_file 'boo.rb' )
   end
 

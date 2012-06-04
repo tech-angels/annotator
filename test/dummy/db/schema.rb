@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120527020350) do
+ActiveRecord::Schema.define(:version => 20120527025142) do
+
+  create_table "boos", :force => true do |t|
+    t.integer  "foo_id"
+    t.integer  "poly_id"
+    t.string   "poly_type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "foos", :force => true do |t|
     t.text     "body"
@@ -19,6 +27,15 @@ ActiveRecord::Schema.define(:version => 20120527020350) do
     t.integer  "random_number"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "papers", :force => true do |t|
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "users", :force => true do |t|
