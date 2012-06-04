@@ -2,7 +2,7 @@ module Annotator
   module InitialDescription
 
     # Initial descriptinos for paperclip attachments columns
-    class Papercliep < Base
+    class Paperclip < Base
 
       def check
         if @model.respond_to? :attachments_definitions
