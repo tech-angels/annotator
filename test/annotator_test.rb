@@ -42,6 +42,12 @@ class AnnotatorTest < ActiveSupport::TestCase
     assert_equal File.read(asset_file 'boo_annotated.rb' ), File.read(app_file 'boo.rb' )
   end
 
+  test "handling some code before annotitions block" do
+    FileUtils.cp asset_file('foo_require_first.rb'), app_file('foo.rb')
+    execute "rake annotate"
+    assert_equal File.read(asset_file 'foo_require_first.rb' ), File.read(app_file 'foo.rb' )
+  end
+
   def asset_file(name)
     File.join(File.expand_path("../assets/",  __FILE__), name)
   end
