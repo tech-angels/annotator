@@ -70,7 +70,6 @@ Contributions are very much welcome.
 
 == Todos
 
-* it could be written a bit cleaner
 * since name does not have "model" in it, we could possibly use "rake routes" to annotate controller actions, not sure if it's worth it
 
 == Authors
