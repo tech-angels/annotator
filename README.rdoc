@@ -89,3 +89,5 @@ Contributions:
 == License
 
    Annotator released under the MIT license. 
+
+<img src="http://media.tumblr.com/tumblr_m5ay3bQiER1qa44ov.png" />
