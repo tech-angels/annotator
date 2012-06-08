@@ -1,7 +1,9 @@
-module Annotate
-  class Railtie < Rails::Railtie
-    rake_tasks do
-      Dir[File.join(File.dirname(__FILE__),'../tasks/*.rake')].each { |f| load f }
+if defined?Rails
+  module Annotate
+    class Railtie < Rails::Railtie
+      rake_tasks do
+        Dir[File.join(File.dirname(__FILE__),'../tasks/*.rake')].each { |f| load f }
+      end
     end
   end
 end

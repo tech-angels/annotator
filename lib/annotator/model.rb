@@ -3,15 +3,16 @@ module Annotator
   # Represents a single model file and associated class
   class Model
 
-    def initialize(filename)
+    def initialize(filename, base_path)
       @filename = filename
+      @base_path = base_path
       @blocks = Hash.new {[]}
     end
 
     # Model class
     def klass
       begin 
-        @filename.split('app/models/').last.split(/\.rb$/).first.camelize.constantize
+        @filename.split(@base_path).last.split(/\.rb$/).first.camelize.constantize rescue nil
       rescue Exception
         nil
       end
