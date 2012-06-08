@@ -1,6 +1,6 @@
 = Annotator
 
-If you just want to have column descriptions in your model file, [annotate_models](https://github.com/ctran/annotate_models) should suite you well. Annotator will help you if you want to also keep your own comments about these columns.
+If you just want to have column descriptions in your model file, {annotate_models}[https://github.com/ctran/annotate_models] should suite you well. Annotator will help you if you want to also keep your own comments about these columns.
 
 Ever wondered what the heck is that column used for?
 
@@ -80,11 +80,11 @@ Contributions are very much welcome.
 
 == Authors
 
-   Kacper Cieśla @ Tech-Angels http://www.tech-angels.com/
+ Kacper Cieśla @ Tech-Angels http://www.tech-angels.com/
 
-   Contributions:
+ Contributions:
 
-   * [Lucas Florio](https://github.com/lucasefe) - made it working without rails
+ * {Lucas Florio}[https://github.com/lucasefe] - made it working without rails
 
 == License
 
