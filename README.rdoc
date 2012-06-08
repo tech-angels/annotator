@@ -78,16 +78,19 @@ Contributions are very much welcome.
 
 * since name does not have "model" in it, we could possibly use "rake routes" to annotate controller actions, not sure if it's worth it
 
-== Authors
+== Credits
 
-Kacper Cieśla @ Tech-Angels http://www.tech-angels.com
+Kacper Cieśla @ Tech-Angels - http://www.tech-angels.com
 
-Contributions:
+{<img src="http://media.tumblr.com/tumblr_m5ay3bQiER1qa44ov.png" alt="Tech-Angels" />}[http://www.tech-angels.com]
+
+{Contributions}[https://github.com/tech-angels/annotator/graphs/contributors]:
 
 * {Lucas Florio}[https://github.com/lucasefe] - made it working without rails
 
+
 == License
 
-   Annotator released under the MIT license. 
+   Annotator is released under the MIT license. 
 
-http://media.tumblr.com/tumblr_m5ay3bQiER1qa44ov.png
+
