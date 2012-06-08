@@ -65,6 +65,12 @@ Of course similar thing happens when you remove column or change it's type.
   * belongs_to association columns
   * devise columns
   * paperclip colums
+* you can run it without rails (if you use sinatra for example), just add something like this to your Rakefile
+      task :annotate do
+        require 'annotator'
+        Annotator.run(File.join(Dir.pwd, "lib", "models"))
+      end
+  
 
 Contributions are very much welcome.
 
@@ -75,3 +81,11 @@ Contributions are very much welcome.
 == Authors
 
    Kacper Cieśla @ Tech-Angels http://www.tech-angels.com/
+
+   Contributions:
+
+   * [Lucas Florio](https://github.com/lucasefe) - made it working without rails
+
+== License
+
+   Annotator released under the MIT license. 
