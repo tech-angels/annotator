@@ -80,7 +80,7 @@ Contributions are very much welcome.
 
 == Authors
 
-Kacper Cieśla @ Tech-Angels http://www.tech-angels.com/
+Kacper Cieśla @ Tech-Angels http://www.tech-angels.com
 
 Contributions:
 
