@@ -33,7 +33,20 @@ module Annotator
         @blocks[current_block] += [line]
       end
 
-      @blocks[:after], @blocks[:before] = @blocks[:before], [] if @blocks[:after].empty?
+
+      # If there is no after block, it means there are no attributes block yet.
+      # Let's try to find some good place to insert them.
+      if @blocks[:after].empty?
+        @blocks[:before].each_with_index do |line,i|
+          # We want to insert them after requires or any comment block at the beginning of the file
+          unless line.match(/^require/) || line.match(/^#/)
+            @blocks[:after] = @blocks[:before][i..-1]
+            @blocks[:before] = (i == 0) ? [] : @blocks[:before][0..(i-1)] + [''] # add one additional separation line to make it cleaner
+            break
+          end
+        end
+      end
+
     end
 
     # If this file does not have associated AR class it should be skipped

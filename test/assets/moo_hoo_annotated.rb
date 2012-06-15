@@ -1,3 +1,5 @@
+# Some existing stupid comment
+
 # Attributes:
 # * id [integer, primary, not null] - primary key
 # * body [text]
@@ -5,7 +7,6 @@
 # * random_number [integer] - TODO: document me
 # * title [string]
 # * updated_at [datetime, not null] - last update time
-# Some existing stupid comment
 module Moo
   class Hoo < ActiveRecord::Base
     self.table_name = 'foos'

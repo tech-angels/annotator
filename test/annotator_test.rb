@@ -48,6 +48,12 @@ class AnnotatorTest < ActiveSupport::TestCase
     assert_equal File.read(asset_file 'foo_require_first.rb' ), File.read(app_file 'foo.rb' )
   end
 
+  test "leaving magic comments in place" do
+    FileUtils.cp asset_file('boo_encoding.rb'), app_file('boo.rb')
+    execute "rake annotate"
+    assert_equal File.read(asset_file 'boo_encoding_annotated.rb' ), File.read(app_file 'boo.rb' )
+  end
+
   test "annotating namespaced models" do
     assert_equal File.read(asset_file 'moo_hoo_annotated.rb' ), File.read(app_file 'moo/hoo.rb' )
   end

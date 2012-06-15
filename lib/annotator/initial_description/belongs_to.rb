@@ -7,7 +7,7 @@ module Annotator
       def check
         # check if there is belongs to association where this column is a foreign key
         @model.reflect_on_all_associations.each do |reflection|
-          if reflection.foreign_key == @column && reflection.macro == :belongs_to
+          if (reflection.options[:foreign_key] || reflection.send(:derive_foreign_key)) == @column && reflection.macro == :belongs_to
             @reflection = reflection
             return true
           end
