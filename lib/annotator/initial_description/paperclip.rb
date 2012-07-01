@@ -5,8 +5,8 @@ module Annotator
     class Paperclip < Base
 
       def check
-        if @model.respond_to? :attachments_definitions
-          @model.attachments_definitions.keys.each do |att|
+        if @model.respond_to? :attachment_definitions
+          @model.attachment_definitions.keys.each do |att|
             cols = ["#{att}_file_name", "#{att}_content_type", "#{att}_file_size", "#{att}_updated_at"]
             if cols.include? @column
               @attachment = att
