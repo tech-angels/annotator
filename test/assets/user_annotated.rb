@@ -1,14 +1,14 @@
 # Attributes:
 # * id [integer, primary, not null] - primary key
 # * authentication_token [string] - Devise Token authenticable module
-# * confirmation_sent_at [datetime] - TODO: document me
+# * confirmation_sent_at [datetime] - Devise Confirmable module
 # * confirmation_token [string] - Devise Confirmable module
 # * confirmed_at [datetime] - Devise Confirmable module
 # * created_at [datetime, not null] - creation time
 # * current_sign_in_at [datetime] - Devise Trackable module
 # * current_sign_in_ip [string] - Devise Trackable module
 # * email [string, default=, not null]
-# * encrypted_password [string, default=, not null] - TODO: document me
+# * encrypted_password [string, default=, not null] - Devise encrypted password
 # * failed_attempts [integer, default=0] - Devise Lockable module
 # * last_sign_in_at [datetime] - Devise Trackable module
 # * last_sign_in_ip [string] - Devise Trackable module

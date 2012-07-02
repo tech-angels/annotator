@@ -1,7 +1,7 @@
 module Annotator
   module InitialDescription
 
-    # Initila descriptions for devise specific columns
+    # Initial descriptions for devise specific columns
     class Devise < Base
 
       def check
@@ -10,6 +10,7 @@ module Annotator
 
       def columns
         {
+          :encrypted_password         => "Devise encrypted password",
           :reset_password_token       => "Devise Recoverable module",
           :reset_password_sent_at     => "Devise Recoverable module",
           :remember_created_at        => "Devise Rememberable module",
@@ -21,7 +22,7 @@ module Annotator
           :password_salt              => "Devise Encriptable module",
           :confirmation_token         => "Devise Confirmable module",
           :confirmed_at               => "Devise Confirmable module",
-          :confiramtion_sent_at       => "Devise Confirmable module",
+          :confirmation_sent_at       => "Devise Confirmable module",
           :unconfirmed_email          => "Devise Confirmable module",
           :failed_attempts            => "Devise Lockable module",
           :unlock_token               => "Devise Locakble module",
