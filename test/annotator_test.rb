@@ -58,6 +58,19 @@ class AnnotatorTest < ActiveSupport::TestCase
     assert_equal File.read(asset_file 'moo_hoo_annotated.rb' ), File.read(app_file 'moo/hoo.rb' )
   end
 
+  test "reannotating belongs_to if it had default annotation" do
+    assert_equal File.read(asset_file 'roo_reannotated.rb' ), File.read(app_file 'roo.rb' )
+  end
+
+  test "reannotating belongs_to output message" do
+    FileUtils.cp asset_file('roo_initially_annotated.rb'), app_file('roo.rb')
+    output = execute "rake annotate"
+    assert output.include?('M Roo#boo_id description updated')
+    assert output.include?('M Roo#poly_id description updated')
+    assert output.include?('M Roo#poly_type description updated')
+    assert !output.include?('M Roo#foo_id')
+  end
+
   def asset_file(name)
     File.join(File.expand_path("../assets/",  __FILE__), name)
   end

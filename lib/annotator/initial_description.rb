@@ -4,7 +4,8 @@ Dir[File.dirname(__FILE__) + '/initial_description/*.rb'].each {|file| require f
 module Annotator
   module InitialDescription
 
-    NO_DESCRIPTION_COLUMNS = %w{email name title body} 
+    DEFAULT_DESCRIPTION = "TODO: document me"
+    NO_DESCRIPTION_COLUMNS = %w{email name title body}
 
     # Get initial description for given model & column
     def self.for(model, column)
@@ -16,7 +17,7 @@ module Annotator
       # Some columns are just too obvious
       return "" if NO_DESCRIPTION_COLUMNS.include? column
       # Let user do the work
-      return "TODO: document me"
+      return DEFAULT_DESCRIPTION
     end
 
   end
