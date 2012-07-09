@@ -70,7 +70,7 @@ Of course similar thing happens when you remove column or change it's type.
         require 'annotator'
         Annotator.run(File.join(Dir.pwd, "lib", "models"))
       end
-  
+
 
 Contributions are very much welcome.
 
@@ -87,10 +87,10 @@ Kacper Cieśla @ Tech-Angels - http://www.tech-angels.com
 {Contributions}[https://github.com/tech-angels/annotator/graphs/contributors]:
 
 * {Lucas Florio}[https://github.com/lucasefe] - made it working without rails
-
+* {vanyak}[https://github.com/vanyak] - re-annotating belongs_to associations
 
 == License
 
-   Annotator is released under the MIT license. 
+   Annotator is released under the MIT license.
 
 
