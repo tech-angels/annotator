@@ -37,6 +37,12 @@ module Annotator
           if row[:type] != type_str(column)
             puts "  M #{@model}##{column.name} [#{row[:type]} -> #{type_str(column)}]"
             row[:type] = type_str(column)
+          elsif row[:desc] == InitialDescription::DEFAULT_DESCRIPTION
+            new_desc = InitialDescription.for(@model, column.name)
+            if row[:desc] != new_desc
+              puts "  M #{@model}##{column.name} description updated"
+              row[:desc] = new_desc
+            end
           end
         else
           puts "  A #{@model}##{column.name} [#{type_str(column)}]"
