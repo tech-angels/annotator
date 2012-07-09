@@ -1,3 +1,7 @@
+# 0.0.8.1
+
+* [bug] fix paperclip related "undefined method `keys' for nil:NilClass"
+
 # 0.0.8
 
 * [bug] Fix Devise fields
