@@ -30,6 +30,7 @@ class AnnotatorTest < ActiveSupport::TestCase
     assert_equal File.read(asset_file 'foo_annotated_bad_column_nodoc.rb' ), File.read(app_file 'foo.rb' )
   end
 
+  # also tests multiline default values
   test "annotating devise columns" do
     assert_equal File.read(asset_file 'user_annotated.rb' ), File.read(app_file 'user.rb' )
   end

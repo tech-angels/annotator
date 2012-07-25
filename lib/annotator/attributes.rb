@@ -79,11 +79,19 @@ module Annotator
       end
     end
 
+    # default value could be a multiple lines string, which would ruin annotations,
+    # so we truncate it and display inspect of that string
+    def truncate_default(str)
+      return str unless str.kind_of? String
+      str = "#{str[0..10]}..." if str.size > 10
+      str.sub(/^'/,'').inspect
+    end
+
     # Human readable description of given column type
     def type_str(c)
       ret = c.type.to_s
       ret << ", primary" if c.primary
-      ret << ", default=#{c.default}" if c.default
+      ret << ", default=#{truncate_default(c.default)}" if c.default
       ret << ", not null" unless c.null
       ret << ", limit=#{c.limit}" if c.limit && (c.limit != 255 && c.type != :string)
       ret

@@ -7,8 +7,9 @@
 # * created_at [datetime, not null] - creation time
 # * current_sign_in_at [datetime] - Devise Trackable module
 # * current_sign_in_ip [string] - Devise Trackable module
-# * email [string, default=, not null]
-# * encrypted_password [string, default=, not null] - Devise encrypted password
+# * description [string, default="Long\nmulti..."] - TODO: document me
+# * email [string, default="", not null]
+# * encrypted_password [string, default="", not null] - Devise encrypted password
 # * failed_attempts [integer, default=0] - Devise Lockable module
 # * last_sign_in_at [datetime] - Devise Trackable module
 # * last_sign_in_ip [string] - Devise Trackable module

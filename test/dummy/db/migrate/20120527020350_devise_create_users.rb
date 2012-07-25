@@ -36,6 +36,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Token authenticatable
       t.string :authentication_token
 
+      # Something exctra to test default values annotations
+      t.string :description, :default => "Long\nmultiline\nstring"
 
       t.timestamps
     end

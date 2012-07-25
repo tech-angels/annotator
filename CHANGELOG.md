@@ -1,3 +1,7 @@
+# master
+
+* [bug] fix annotations for multiline default column values
+
 # 0.0.8.1
 
 * [bug] fix paperclip related "undefined method `keys' for nil:NilClass"
