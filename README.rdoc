@@ -1,4 +1,6 @@
 = Annotator
+{<img src="https://gemnasium.com/tech-angels/annotator.png" alt="Dependency Status" />}[https://gemnasium.com/tech-angels/annotator]
+{<img src="https://travis-ci.org/tech-angels/annotator.png?branch=master" alt="Build Status" />}[https://travis-ci.org/tech-angels/annotator]
 
 If you just want to have column descriptions in your model file, {annotate_models}[https://github.com/ctran/annotate_models] should suite you well. Annotator will help you if you want to also keep your own comments about these columns.
 
