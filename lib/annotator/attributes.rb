@@ -83,8 +83,9 @@ module Annotator
     # so we truncate it and display inspect of that string
     def truncate_default(str)
       return str unless str.kind_of? String
+      str.sub!(/^'(.*)'$/m,'\1')
       str = "#{str[0..10]}..." if str.size > 10
-      str.sub(/^'/,'').inspect
+      str.inspect
     end
 
     # Human readable description of given column type
