@@ -1,6 +1,7 @@
-# master
+# 0.0.9
 
 * [bug] fix annotations for multiline default column values
+* [feature] Rails 4 compatility - PR: #11 - credits: vanyak
 
 # 0.0.8.1
 
