@@ -39,7 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # Something exctra to test default values annotations
       t.string :description, :default => "Long\nmultiline\nstring"
 
-      t.timestamps
+      t.timestamps :null => false
     end
 
     add_index :users, :email,                :unique => true

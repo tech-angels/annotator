@@ -4,7 +4,7 @@ class CreateFoos < ActiveRecord::Migration
       t.text :body
       t.string :title
       t.integer :random_number
-      t.timestamps
+      t.timestamps :null => false
     end
   end
 end
