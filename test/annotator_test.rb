@@ -72,6 +72,13 @@ class AnnotatorTest < ActiveSupport::TestCase
     assert !output.include?('M Roo#foo_id')
   end
 
+  test "removing a deleted column" do
+    FileUtils.cp asset_file('roo_annotated_with_old_column.rb'), app_file('roo.rb')
+    output = execute "rake annotate"
+    assert output.include?('D Roo#deleted_at')
+    assert_equal File.read(asset_file 'roo_reannotated.rb' ), File.read(app_file 'roo.rb' )
+  end
+
   def asset_file(name)
     File.join(File.expand_path("../assets/",  __FILE__), name)
   end

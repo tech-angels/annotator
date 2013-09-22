@@ -5,7 +5,7 @@ module Annotator
     R_ATTRIBUTE = /^# \* (\w+) \[(.*?)\]( \- )?(.*)$/
     R_ATTRIBUTE_NEXT_LINE = /^#   (.*?)$/
     R_ATTRIBUTE_LINE = /(#{R_ATTRIBUTE})|(#{R_ATTRIBUTE_NEXT_LINE})/
-    HEADER = "# Attributes:" 
+    HEADER = "# Attributes:"
     MAX_CHARS_PER_LINE = 120
 
     def initialize(model, lines)
@@ -58,8 +58,8 @@ module Annotator
       orphans = @attrs.map{|x| x[:name]} - @model.columns.map(&:name)
       unless orphans.empty?
         orphans.each do |orphan|
-          puts "  D #{@model}#{orphan}"
-          @attrs = @attrs.select {|x| x[0] != orphan}
+          puts "  D #{@model}##{orphan}"
+          @attrs = @attrs.select {|x| x[:name] != orphan}
         end
       end
 
@@ -73,7 +73,7 @@ module Annotator
       @lines.each do |line|
         if m = line.match(R_ATTRIBUTE)
           @attrs << {:name => m[1].strip, :type => m[2].strip, :desc => m[4].strip}
-        elsif m = line.match(R_ATTRIBUTE_NEXT_LINE) 
+        elsif m = line.match(R_ATTRIBUTE_NEXT_LINE)
           @attrs[-1][:desc] += " #{m[1].strip}"
         end
       end
