@@ -1,3 +1,7 @@
+# 0.0.10
+
+* [bug] fix annotations removal
+
 # 0.0.9
 
 * [bug] fix annotations for multiline default column values
